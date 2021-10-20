@@ -3,7 +3,7 @@ open import Level using (Level; _⊔_; suc)
 open import Relation.Binary.PropositionalEquality using (_≡_)
 
 record Category {a b : Level} (obj : Set a) : Set (a ⊔ (suc b)) where
-  constructor Cat
+  constructor aCategory
   field
     hom : obj → obj → Set b
     id : {X : obj} → hom X X
@@ -32,4 +32,4 @@ comp-syntax :  {a b : Level} {obj : Set a} {X Y Z : obj}
   → (f : ℂ ⦅ X ⟶ Y ⦆) → (g : ℂ ⦅ Y ⟶ Z ⦆)
   → ℂ ⦅ X ⟶ Z ⦆
 comp-syntax ℂ f g = Category.comp ℂ f g
-syntax comp-syntax ℂ f g = g ∘⟨ ℂ ⟩ f
+syntax comp-syntax ℂ f g = g ∘[ ℂ ] f

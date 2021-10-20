@@ -9,7 +9,7 @@ data one : Set where
   • : one
 
 Trivial : Category one
-Trivial = Cat hom id comp id-comp comp-id assoc
+Trivial = aCategory hom id comp id-comp comp-id assoc
   where
     hom : one → one → Set
     hom • • = one
@@ -31,11 +31,11 @@ Trivial = Cat hom id comp id-comp comp-id assoc
     assoc {•} {•} {•} {•} • • • = refl
 
 Types : Category Set
-Types = Cat (λ X Y → (X → Y)) (λ x → x) (λ f g x → g (f x))
+Types = aCategory (λ X Y → (X → Y)) (λ x → x) (λ f g x → g (f x))
   (λ f → refl) (λ f → refl) (λ f g h → refl)
 
 ℕ≤ : Category ℕ
-ℕ≤ = Cat _≤_ ≤-refl ≤-trans id-comp comp-id assoc
+ℕ≤ = aCategory _≤_ ≤-refl ≤-trans id-comp comp-id assoc
  where
    id-comp : {X Y : ℕ} (f : X ≤ Y) → ≤-trans ≤-refl f ≡ f
    id-comp {.zero} {Y} z≤n = refl
